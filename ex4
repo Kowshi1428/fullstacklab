@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Creative To-Do App</title>
+    <script src="angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .app {
+            background: white;
+            width: 420px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a4fcf;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            flex: 1;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            background: #5a4fcf;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f4f4ff;
+            padding: 8px;
+            border-radius: 10px;
+            margin: 6px 0;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .priority-high { border-left: 5px solid #ff4d4d; }
+        .priority-medium { border-left: 5px solid #ffaa00; }
+        .priority-low { border-left: 5px solid #28a745; }
+
+        .filters {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .filters button {
+            background: #eee;
+            color: #333;
+            margin: 0 3px;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 13px;
+            margin-top: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body ng-controller="TodoController">
+
+<div class="app">
+    <h1> My Smart To-Do</h1>
+
+    <div class="input-group">
+        <input type="text" ng-model="newTask" placeholder="Enter a task...">
+        <select ng-model="priority">
+            <option value="high">High</option>
+            <option value="medium"> Medium</option>
+            <option value="low"> Low</option>
+        </select>
+        <button ng-click="addTask()">Add</button>
+    </div>
+
+    <div class="filters">
+        <button ng-click="filterStatus=''">All</button>
+        <button ng-click="filterStatus=false">Pending</button>
+        <button ng-click="filterStatus=true">Completed</button>
+    </div>
+
+    <div class="task"
+         ng-repeat="task in tasks | filter:{done:filterStatus}"
+         ng-class="{'priority-high':task.priority=='high',
+                    'priority-medium':task.priority=='medium',
+                    'priority-low':task.priority=='low'}">
+
+        <!-- Normal View -->
+        <span ng-if="!task.editing"
+              ng-class="{'done':task.done}"
+              ng-click="task.done=!task.done">
+            {{task.name}}
+        </span>
+
+        <!-- Edit Mode (added) -->
+        <input type="text" ng-if="task.editing" ng-model="task.name">
+
+        <!-- Edit buttons added -->
+        <button ng-if="!task.editing" ng-click="editTask(task)">✏</button>
+        <button ng-if="task.editing" ng-click="saveTask(task)">💾</button>
+
+        <button ng-click="removeTask($index)">🗑</button>
+    </div>
+
+    <div class="stats">
+        Total: {{tasks.length}} |
+        Completed: {{completedCount()}} |
+        Pending: {{tasks.length - completedCount()}}
+    </div>
+</div>
+
+<script>
+angular.module("todoApp", [])
+.controller("TodoController", function($scope) {
+
+    $scope.tasks = [];
+    $scope.priority = "medium";
+    $scope.filterStatus = '';
+
+    $scope.addTask = function() {
+        if ($scope.newTask) {
+            $scope.tasks.push({
+                name: $scope.newTask,
+                done: false,
+                priority: $scope.priority,
+                editing: false   // added
+            });
+            $scope.newTask = "";
+        }
+    };
+
+    $scope.removeTask = function(index) {
+        $scope.tasks.splice(index, 1);
+    };
+
+    // Edit functions added
+    $scope.editTask = function(task) {
+        task.editing = true;
+    };
+
+    $scope.saveTask = function(task) {
+        task.editing = false;
+    };
+
+    $scope.completedCount = function() {
+        return $scope.tasks.filter(t => t.done).length;
+    };
+
+});
+</script>
+
+</body>
+</html>
