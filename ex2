@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kowshhh Products</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+  background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c9ff, #92fe9d);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  font-family: Arial, sans-serif;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">KOWSHHH PRODUCTS</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- CAROUSEL -->
+<div id="carouselExample" class="carousel slide m-4 shadow" data-bs-ride="carousel">
+  <div class="carousel-inner rounded">
+    <div class="carousel-item active">
+      <img src="https://picsum.photos/1200/400?1" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/1200/400?2" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/1200/400?3" class="d-block w-100">
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about">About</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#services">Services</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#offers">Offers</button></li>
+  </ul>
+  <div class="tab-content bg-light p-3 rounded-bottom">
+    <div class="tab-pane fade show active" id="about">We build quality tech products.</div>
+    <div class="tab-pane fade" id="services">Websites, Apps, Software solutions.</div>
+    <div class="tab-pane fade" id="offers">Festive discounts available!</div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="container mt-5" id="products">
+  <h2 class="text-center mb-4">Our Products</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <img src="https://picsum.photos/300?4" class="card-img-top">
+        <div class="card-body">
+          <h5>Product 1 <span class="badge bg-success">New</span></h5>
+          <p>Latest product.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow">
+        <img src="https://picsum.photos/300?5" class="card-img-top">
+        <div class="card-body">
+          <h5>Product 2 <span class="badge bg-warning">Hot</span></h5>
+          <p>Best seller.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow">
+        <img src="https://picsum.photos/300?6" class="card-img-top">
+        <div class="card-body">
+          <h5>Product 3 <span class="badge bg-danger">Sale</span></h5>
+          <p>Discount available.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="container mt-5" id="gallery">
+  <h2 class="text-center">Gallery</h2>
+  <div class="row">
+    <div class="col-md-3"><img src="https://picsum.photos/200?7" class="img-fluid rounded"></div>
+    <div class="col-md-3"><img src="https://picsum.photos/200?8" class="img-fluid rounded"></div>
+    <div class="col-md-3"><img src="https://picsum.photos/200?9" class="img-fluid rounded"></div>
+    <div class="col-md-3"><img src="https://picsum.photos/200?10" class="img-fluid rounded"></div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="container mt-5">
+  <h2 class="text-center">Price List</h2>
+  <table class="table table-bordered table-striped">
+    <tr><th>Product</th><th>Category</th><th>Price</th></tr>
+    <tr><td>Product 1</td><td>Electronics</td><td>₹2000</td></tr>
+    <tr><td>Product 2</td><td>Accessories</td><td>₹1500</td></tr>
+    <tr><td>Product 3</td><td>Software</td><td>₹3000</td></tr>
+  </table>
+</div>
+
+<!-- PAGINATION -->
+<div class="text-center my-4">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+  </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
