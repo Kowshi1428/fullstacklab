@@ -1,0 +1,38 @@
+app.post("/calculate", function (req, res) {
+    const dob = new Date(req.body.dob);
+    const today = new Date();
+
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
+
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    const diffTime = today - dob;
+    const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(totalDays / 7);
+    const totalMonths = years * 12 + months;
+
+    res.send(`
+        <h2>Age Result</h2>
+        <p><b>Date of Birth:</b> ${req.body.dob}</p>
+        <p><b>Today:</b> ${today.toDateString()}</p>
+
+        <h3>Your Age:</h3>
+        <p>${years} years, ${months} months, ${days} days</p>
+
+        <h3>You have lived:</h3>
+        <p>${totalDays} days</p>
+        <p>${weeks} weeks</p>
+        <p>${totalMonths} months</p>
+    `);
+});
